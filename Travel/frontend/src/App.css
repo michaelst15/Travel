@@ -1,0 +1,239 @@
+.App {
+  text-align: center;
+  height: 100%;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.card-login {
+  background-color: white;
+}
+
+.News  {
+  background: linear-gradient(to right, #475c86, #1cb5e0)
+}
+
+.imageList {
+  margin-top: 3000px;
+}
+
+#infoIcon {
+  color: gray;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: red;
+  background: linear-gradient(to right, #475c86, #1cb5e0); 
+  border-radius: 40px;
+  margin-top: 100px;
+  /* margin-left: 460px; */
+}
+
+#formKeberangkatan {
+  margin-top: -60px;
+  margin-bottom: 70px;
+  margin-left: 230px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 10px 1px gray;
+  width: 60%;
+  height: 390px;
+}
+
+.modal-booking {
+  margin-top: 150px;
+  position: absolute;
+  left: 70%;
+  font-size: 9px;
+  width: 250px;
+  height: 600px;
+}
+
+.pop-booking {
+  position: 'absolute';
+  background-color: white;
+  margin-top: 100px;
+  margin-left: 600px;
+  height: 200px;
+  transform: 'translate(-50%, -50%)';
+  width: 300px;
+  background-color: 'background.paper';
+  /* border: 1px solid black; */
+  border-radius: 12px;
+  box-shadow: 1px 1px 7px  1px gray;
+  padding-top: 2;
+  padding-bottom: 3,
+}
+
+.card-booking {
+  position: absolute;
+  left: 70%;
+}
+
+
+
+.Map {
+  height: 85vh;
+  width: 100%;
+  margin-top: 50px;
+  margin-left: -50px;
+  margin-right: 10px;
+}
+
+.logoPesawat {
+  margin-left: -225px;
+}
+
+.logoKereta {
+  margin-left: -225px;
+}
+
+.logoClass {
+  margin-left: -225px;
+}
+
+.Card-Display {
+  display: block;
+  padding: 1px;
+  margin: 1px;
+  /* flex-direction: column; */
+}
+
+.card-media {
+  height: 100%;
+  width: 350px;
+}
+
+#btn-via-pesawat:hover {
+    background-color: #12abeb;
+    color: white;
+}
+
+#btn-via-kereta:hover {
+  background-color: #12abeb;
+  color: white;
+}
+
+#card-wisata {
+  display: flex;
+  margin-top: 70px;
+  width: 1000px;
+  height: 250px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 10px 1px gray;
+}
+
+#title-wisata {
+  font-size: 18px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#deskripsi-wisata {
+  width: 400px;
+  margin-top: 20px;
+}
+
+.compose-chart {
+  margin-left: -170px;
+}
+
+.star {
+  width: 50px;
+  height: 30px;
+  font-family: 'Merriweather', serif;
+  color: white;
+  text-align: center;
+  padding-top: 2px;
+  border-radius: 30px;
+  background-color: #ceb5ff;
+}
+
+#Card-Action {
+  display: block;
+  margin-top: -20px;
+  margin-left: 470px;
+}
+
+#btn-booking {
+  font-size: 9px;
+  color: white;
+  margin-top: 90px;
+  margin-left: -90px;
+  background-image: radial-gradient(circle, #3dc8dc, #25c2e1, #05bbe5, #00b3e9, #12abeb);
+}
+
+/* #close:hover {
+  background-color: #12abeb;
+  color: white;
+} */
+
+
+#login:hover {
+  background-color: blueviolet;
+}
+
+#daftar:hover {
+  background-color: blueviolet;
+}
+
+
+#button-form-pesawat {
+  font-size: 9px;
+  color: white;
+  background-image: radial-gradient(circle, #3dc8dc, #25c2e1, #05bbe5, #00b3e9, #12abeb);
+}
+
+#CardPromo {
+  background: linear-gradient(to right, #1d2b64, #f8cdda)
+}
+
+/* */
+
+#AppBar {
+  background: linear-gradient(to right, #475c86, #1cb5e0); 
+}
+
+#password {
+  color: white;
+}
+
+#sub-menu:hover {
+ z-index: -1;
+}
+
+/* @import '../node_modules/react-pro-sidebar/dist/styles/StyledUl.d.ts'; */
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

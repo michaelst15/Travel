@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "create BE Travel",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch src --exec",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelst15/Travel.git"
+  },
+  "author": "michael-suparlan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelst15/Travel/issues"
+  },
+  "homepage": "https://github.com/michaelst15/Travel#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "http": "0.0.1-security",
+    "jsonwebtoken": "^9.0.1",
+    "mssql": "^9.1.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.5.2",
+    "nodemon": "^3.0.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "react": "^18.2.0",
+    "react-router-dom": "^6.14.2",
+    "react-scripts": "^5.0.1",
+    "sequelize": "^6.32.1"
+  }
+}
