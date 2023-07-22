@@ -30,7 +30,7 @@ export const Daftar = () => {
       axios.post('http://localhost:5000/register', daftar)
       .then(res => {
         console.log(res.data);
-        navigate('/login')
+        navigate('/')
       })
       .catch(err => {
         console.log(err);

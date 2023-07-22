@@ -32,7 +32,8 @@ export default function Login () {
 
     axios.post('http://localhost:5000/login', login)
     .then(res => {
-         setValidation(res.data)
+         
+         console.log(res.data)
          Cookies.set('token', res.data.token)
          if(!res.data.error){
           localStorage.setItem('user', JSON.stringify(res.data))
@@ -42,8 +43,8 @@ export default function Login () {
           Cookies.remove('token')
          }
     })
-    .catch(err => {
-      console.log(err);
+    .catch(error => {
+      console.log(error.message);
     })
   }
 
