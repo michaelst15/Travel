@@ -17,13 +17,18 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useAppStore } from '../appStore';
+import { useNavigate } from 'react-router-dom';
 import logoTraveling from '../components/image/logoTraveling.png'
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 const AppBar = styled(MuiAppBar, {
 })(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
 }));
+
+const navigate = useNavigate();
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -87,6 +92,20 @@ export default function Navbar() {
     handleMobileMenuClose();
   };
 
+  const handleClose = () => {
+
+    axios.get('http://localhost:5000/logout')
+    .then(res => {
+      Cookies.remove('token')
+      navigate('/')
+    })
+    .catch(err => {
+      err.message
+    })
+  }
+
+  console.log(handleClose, 'logout');
+
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -109,7 +128,7 @@ export default function Navbar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={handleClose}>Logout</MenuItem>
     </Menu>
   );
 

@@ -1,13 +1,12 @@
-import db from "../database/db.js";
 import User from "../model/regis.js";
-import passport from 'passport';
-import { useParams } from 'react-router-dom';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import dotenv from 'dotenv';
 
 
 export const login = async (req, res, next) => {
+
+  const jwtKey = "Secret_Key";
+
     try {
       const user = await User.findOne({
         where: {
@@ -17,12 +16,21 @@ export const login = async (req, res, next) => {
       });
   
       if (user) {
+
+        let token = jwt.sign({ email: user.email }, 
+            jwtKey, {
+              algorithm: "HS256",
+              expiresIn: 300,
+            } 
+          )
+
         if (bcrypt.compare(req.body.password, user.password)) {
-          res.send({
+          res.status(200).send({
             id: user.id,
             nama: user.nama,
             email: user.email,
             password: user.password,
+            token,
           });
         }
       } else {
@@ -60,6 +68,11 @@ export const Register = async(req, res, next) => {
             res.json({ message: "Registrasi berhasil" })
         }
 
+}
+
+export const logout = (res, req) => {
+  res.clearCookie('token');
+  return res.redirect('/');
 }
          
 
