@@ -34,8 +34,7 @@ export const News = () => {
     return (
         <>
          <Navbar />
-          <Box height={30} />
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', marginTop: '120px' }}>
                 <Page />
                 {value?.articles === undefined ? (
                       <Container sx={{ marginTop: '320px' }}>

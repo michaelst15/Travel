@@ -133,7 +133,7 @@ export const Home = () => {
                               <br />
                               <div style={{ display: 'flex' }}>
                                <img src={TrainModal} alt="" style={{ width: '30px', marginLeft: '65px' }} /> 
-                              <Button id="btn-via-kereta" sx={{ marginLeft: '23px', marginTop: '5px' }} onClick={() => navigation("/kereta")}>Via Kereta</Button>
+                              <Button id="btn-via-kereta" sx={{ marginLeft: '23px', marginTop: '5px' }} onClick={() => navigation(`/info-pesanan/${x?.id}`, { state: x })}>Via Kereta</Button>
                               </div>
                              </Box>
                            </Modal>

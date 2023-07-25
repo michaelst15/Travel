@@ -79,6 +79,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+
 export default function Page() {
 
   const { id } = useParams();
@@ -94,7 +95,7 @@ export default function Page() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <Box height={30} />
-      <Drawer variant="permanent" open={isDesktop ? open : !open}>
+      <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -119,7 +120,7 @@ export default function Page() {
                 >
                  <img src={TourismIcon} alt="" style={{ width: 30 }} />
                 </ListItemIcon>
-                <ListItemText primary="Wisata" primaryTypographyProps={{ style: { fontFamily: 'Merriweather' } }} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Wisata" primaryTypographyProps={{ style: { fontFamily: 'Merriweather' } }} sx={{ opacity: open ? 1 : 0}} />
               </ListItemButton>
             </ListItem>
 
