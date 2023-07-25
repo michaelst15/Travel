@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../navbar";
-// import MenuItem from '@mui/material/MenuItem';
+import MenuItem from '@mui/material/MenuItem';
 import { Grid, TextField } from '@material-ui/core';
 import { Box, Button, Card } from "@mui/material";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -11,6 +11,7 @@ import { HiPaperAirplane } from 'react-icons/hi2';
 // import Typography from '@mui/material/Typography';
 // import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { BsFillPeopleFill } from 'react-icons/bs';
+import { useLocation } from "react-router-dom";
 import { MdAirlineSeatReclineExtra } from 'react-icons/md';
 import { LiaPlaneDepartureSolid } from 'react-icons/lia';
 import { LiaPlaneArrivalSolid } from 'react-icons/lia';
@@ -18,8 +19,11 @@ import LogoPromoPesawat from '../image/pesawat_logo.jpg';
 import LogoPromoPesawat2 from '../image/pesawat_logo2.png'
 import Page from "../page";
   
-export const Pesawat = () => {
+export const Pesawat = (props) => {
 
+ 
+
+  // console.log(data?.textAlign, 'state');
 
 
     // const currencies = [
@@ -90,9 +94,9 @@ export const Pesawat = () => {
                                     defaultValue="EUR"
                                     variant="standard"
                                     >
-                                    {/* {currencies.map((option) => (
-                                        <MenuItem key={option.value} value={option.value} va>
-                                         {option.label}
+                                    {/* {data?.map((x, i) => (
+                                        <MenuItem value={x.description} >
+                                         {x.description}
                                         </MenuItem>
                                     ))} */}
                                   </TextField>

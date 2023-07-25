@@ -8,27 +8,34 @@ import RajaAmpat from '../components/image/RajaAmpat.jpg';
 import RajaAmpat2 from '../components/image/wisata-raja-ampat-2.jpeg';
 import RajaAmpat3 from '../components/image/wisata-raja-ampat-3.jpg';
 
+const danauTobaImages = [DanauToba, DanauToba2, DanauToba3];
+const pantaiKutaImages = [PantaiKuta, PantaiKuta2, PantaiKuta3];
+const rajaAmpatImages = [RajaAmpat, RajaAmpat2, RajaAmpat3];
+
 const dataWisata = [
-    {
-          'image': [[DanauToba],[DanauToba2], [DanauToba3]],
-          'sale': 222,
-          'title': "Danau Toba",
-          'description': "Keindahan alam Danau Toba seringkali menjadi ikon pariwisata Indonesia. Danau Toba juga telah ditetapkan sebagai Unesco Global Geopark dalam sidang ke-209 Dewan Eksekutif UNESCO di Paris, Prancis pada 2 Juli 2020 lalu.",
-    },
-    {
-        'image': [[PantaiKuta],[PantaiKuta2], [PantaiKuta3]],
-        'sale': 178,
-        'title': "Pantai Kuta Bali",
-        'description': "Daya tarik utama dari pantai Kuta sebagai destinasi liburan di Bali terdapat pada pasir putih, pemandangan sunset, garis pesisir sangat panjang, serta sarana pariwisata sangat lengkap. Anda akan dengan mudah menemukan hotel, restoran, dan fasilitas pariwisata lainnya di area dekat pantai Kuta."
-    },
-    {
-         'image': [[RajaAmpat],[RajaAmpat2],[RajaAmpat3]],
-         'sale': 155,
-         'title': 'RajaAmpat',
-         'description': `Raja Ampat merupakan sebuah kabupaten di Provinsi Papu Barat. Kabupaten ini memiliki empat pulau besar yaitu Pulau Waigeo, Batanta, Salawati, dan Misool. Selain itu ada juga 1.847 pulau kecil yang ada di Raja Ampat.
-                   Artikel ini telah tayang di Katadata.co.id dengan judul "Raja Ampat, Destinasi Wisata Favorit yang Memiliki Banyak Keindahan"
-                   `
-    }
-] 
+  {
+    'id': 1,
+    'image': danauTobaImages,
+    'sale': 222,
+    'title': "Danau Toba",
+    'description': "Keindahan alam Danau Toba seringkali menjadi ikon pariwisata Indonesia. Danau Toba juga telah ditetapkan sebagai Unesco Global Geopark dalam sidang ke-209 Dewan Eksekutif UNESCO di Paris, Prancis pada 2 Juli 2020 lalu.",
+  },
+  {
+    'id': 2,
+    'image': pantaiKutaImages,
+    'sale': 178,
+    'title': "Pantai Kuta Bali",
+    'description': "Daya tarik utama dari pantai Kuta sebagai destinasi liburan di Bali terdapat pada pasir putih, pemandangan sunset, garis pesisir sangat panjang, serta sarana pariwisata sangat lengkap. Anda akan dengan mudah menemukan hotel, restoran, dan fasilitas pariwisata lainnya di area dekat pantai Kuta."
+  },
+  {
+    'id': 3,
+    'image': rajaAmpatImages,
+    'sale': 155,
+    'title': 'Raja Ampat',
+    'description': `Raja Ampat merupakan sebuah kabupaten di Provinsi Papu Barat. Kabupaten ini memiliki empat pulau besar yaitu Pulau Waigeo, Batanta, Salawati, dan Misool. Selain itu ada juga 1.847 pulau kecil yang ada di Raja Ampat.
+                 Artikel ini telah tayang di Katadata.co.id dengan judul "Raja Ampat, Destinasi Wisata Favorit yang Memiliki Banyak Keindahan"
+                 `
+  }
+];
 
 export default dataWisata;

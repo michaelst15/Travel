@@ -21,7 +21,7 @@ export default function Login () {
     defaultMatches: true
   });
 
-    const navigate = useNavigate();
+    const navigation = useNavigate();
     const [validation, setValidation] = useState([]);
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -37,7 +37,7 @@ export default function Login () {
          Cookies.set('token', res.data.token)
          if(!res.data.error){
           localStorage.setItem('user', JSON.stringify(res.data))
-          navigate('/home')
+          navigation('/home')
          }
          else {
           Cookies.remove('token')
@@ -101,7 +101,7 @@ export default function Login () {
                 backgroundColor: 'Highlight', 
                 color: 'white' 
                 }}>Login</Button>
-              <Button id="daftar" onClick={() => navigate('/Daftar')}
+              <Button id="daftar" onClick={() => navigation('/Daftar')}
                sx={{ 
                 mt: 7, 
                 ml: 6, 

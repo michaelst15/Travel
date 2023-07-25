@@ -28,8 +28,6 @@ const AppBar = styled(MuiAppBar, {
   zIndex: theme.zIndex.drawer + 1,
 }));
 
-const navigate = useNavigate();
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -76,6 +74,8 @@ export default function Navbar() {
   const updateOpen = useAppStore(state => state.updateOpen);
   const dopen = useAppStore(state => state.dopen);
 
+  const navigation = useNavigate();
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -96,11 +96,10 @@ export default function Navbar() {
 
     axios.get('http://localhost:5000/logout')
     .then(res => {
-      Cookies.remove('token')
-      navigate('/')
+      navigation('/')
     })
     .catch(err => {
-      err.message
+      console.log(err.message);
     })
   }
 

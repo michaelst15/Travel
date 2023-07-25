@@ -70,9 +70,8 @@ export const Register = async(req, res, next) => {
 
 }
 
-export const logout = (res, req) => {
+export const logout = (req, res) => {
   res.clearCookie('token');
-  return res.redirect('/');
+  return res.json({ message: 'logout success' });
 }
-         
 

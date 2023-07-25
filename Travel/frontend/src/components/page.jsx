@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -19,6 +19,7 @@ import { useAppStore } from '../appStore';
 import Tickets from './image/ticket.png';
 import DestinationIcon from './image/destination.png';
 import TourismIcon from './image/tourism.png';
+import InfoPesanan from './image/infoPesanan.png';
 import News from './image/global-news.png';
 import Chart from './image/Chart.png';
 import Setting from './image/settings.png';
@@ -78,8 +79,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function Page() {
+
+  const { id } = useParams();
   const theme = useTheme();
-  const navigate = useNavigate();
+  const navigation = useNavigate();
   const open = useAppStore(state => state.dopen);
 
 
@@ -95,7 +98,7 @@ export default function Page() {
         </DrawerHeader>
         <Divider />
         <List>
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate('/home')}>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigation('/home')}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -116,7 +119,7 @@ export default function Page() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ display: 'block', fontFamily: 'Merriweather' }} onClick={() => navigate('/wisata')}>
+            <ListItem disablePadding sx={{ display: 'block', fontFamily: 'Merriweather' }} onClick={() => navigation('/wisata')}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -137,6 +140,27 @@ export default function Page() {
               </ListItemButton>
             </ListItem>
 
+            <ListItem disablePadding sx={{ display: 'block', fontFamily: 'Merriweather' }} onClick={() => navigation(`/info-pesanan/${id}`)}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <img src={InfoPesanan} alt="" style={{ width: 30 }} />
+                </ListItemIcon>
+                <ListItemText primary="Info Pesanan" primaryTypographyProps={{ style: { fontFamily: 'Merriweather' } }} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
             <Sidebar>
                 <Menu>
                     <SubMenu 
@@ -145,13 +169,13 @@ export default function Page() {
                      id='sub-menu' 
                      style={{ paddingLeft: 30, marginTop: '-2px', height: 70, fontFamily: 'Merriweather' }}
                      >
-                        <MenuItem style={{ paddingLeft: 80, fontFamily: 'Merriweather' }} icon={<BiSolidPlaneAlt />} onClick={() => navigate('/pesawat')} > Pesawat </MenuItem>
-                        <MenuItem style={{ paddingLeft: 80, fontFamily: 'Merriweather' }} icon={<IoMdTrain />} onClick={() => navigate('/kereta')}> Kereta </MenuItem>
+                        <MenuItem style={{ paddingLeft: 80, fontFamily: 'Merriweather' }} icon={<BiSolidPlaneAlt />} onClick={() => navigation('/pesawat')} > Pesawat </MenuItem>
+                        <MenuItem style={{ paddingLeft: 80, fontFamily: 'Merriweather' }} icon={<IoMdTrain />} onClick={() => navigation('/kereta')}> Kereta </MenuItem>
                     </SubMenu>
                 </Menu>
             </Sidebar>
 
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate('/analytics')}>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigation('/analytics')}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
@@ -172,7 +196,7 @@ export default function Page() {
               </ListItemButton>
             </ListItem>
 
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate('/news')}>
+            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigation('/news')}>
                 <ListItemButton
                     sx={{
                     marginTop: 1,
