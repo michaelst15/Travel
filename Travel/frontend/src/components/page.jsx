@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -82,6 +83,9 @@ export default function Page() {
 
   const { id } = useParams();
   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'), {
+    defaultMatches: true,
+  })
   const navigation = useNavigate();
   const open = useAppStore(state => state.dopen);
 
@@ -90,7 +94,7 @@ export default function Page() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <Box height={30} />
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={isDesktop ? open : !open}>
         <DrawerHeader>
           <IconButton>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}

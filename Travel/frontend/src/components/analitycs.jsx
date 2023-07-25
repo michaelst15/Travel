@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import {
   Radar, 
   PolarAngleAxis,
@@ -104,7 +104,8 @@ const data2 = [
         <>
          <Navbar />
           <Box height={30} />
-            <Box sx={{ display: 'flex' }}>
+            {/* <Box sx={{ display: 'flex', marginTop: 12 }}> */}
+              <Grid display={"flex"} spacing={12} marginTop={12} justifyContent="center">
                 <Page />
                  <div style={{ width: '100%', height: 300, marginTop: '150px', marginLeft: '-250px',display: 'flex' }}>
 
@@ -143,7 +144,8 @@ const data2 = [
                         </ComposedChart>
                    </ResponsiveContainer>
                 </div>
-            </Box>
+              </Grid>
+            {/* </Box> */}
         </>
     )
 }

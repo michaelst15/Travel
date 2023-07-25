@@ -22,7 +22,7 @@ export const InfoPesanan = () => {
             <Page />
             {data === null ||  
              data?.length === 0 ? (
-              <Container sx={{ marginTop: '220px' }}>
+              <Container sx={{ marginTop: '320px' }}>
                 <Empty />
               </Container>
              ) : (

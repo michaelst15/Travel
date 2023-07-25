@@ -38,7 +38,7 @@ export const News = () => {
             <Box sx={{ display: 'flex' }}>
                 <Page />
                 {value?.articles === undefined ? (
-                      <Container sx={{ marginTop: '220px' }}>
+                      <Container sx={{ marginTop: '320px' }}>
                         <Empty />
                       </Container>
                 ) : (

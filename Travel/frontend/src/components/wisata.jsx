@@ -20,7 +20,7 @@ export const  Wisata = () => {
     <>
       <Navbar />
       <Box height={30} />
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', marginTop: 12 }}>
         <Page />
         <Card className="Map">
             <GoogleMapReact

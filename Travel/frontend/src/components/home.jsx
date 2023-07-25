@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Box, Grid, ImageList, ImageListItem } from "@mui/material";
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { AiOutlineClose } from 'react-icons/ai';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -17,6 +18,7 @@ import PlaneModal from "./image/PlaneModal.png";
 import TrainModal from "./image/TrainModal.png";
 import dataWisata from "../Data-Wisata/wisata";
 import { Tooltip } from "@material-ui/core";
+import { useTheme } from '@mui/material/styles';
 import { Carousel } from 'antd';
 
 export const Home = () => {
@@ -28,6 +30,12 @@ export const Home = () => {
     const navigation = useNavigate();
 
     let { id } = useParams();
+
+    const theme = useTheme();
+
+    const isDesktop = useMediaQuery(theme.breakpoints.up('md'), {
+      defaultMatches: true,
+    })
 
     const [ getValue, setGetValue ] = useState(dataWisata)
 
@@ -54,11 +62,12 @@ export const Home = () => {
         <>
         <Navbar />
          <Box height={30} />
-          <Box sx={{ display: 'flex'  }}>
+          <Box sx={{ display: 'flex', marginTop: 10  }}>
             <Page />
-            <Box sx={{ display: 'block', marginBottom: '50px' }}>
+            <Grid display={"block"} spacing={12} justifyContent="center">
             {getValue?.map((x, i) => {
                 return (
+                  <Grid item={x?.id} xs={12} sm={6} md={4}>
                   <Card id="card-wisata" key={x?.id}>
                     <div className="card-media">
                       <Carousel autoplay style={{ height: 250 }}>
@@ -131,9 +140,10 @@ export const Home = () => {
                            </Modal>
                        </Box> 
                     </Card>
+                    </Grid>
                     )   
                  })}
-               </Box>
+               </Grid>
           </Box>
         </>
     )

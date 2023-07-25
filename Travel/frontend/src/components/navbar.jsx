@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha, useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Grid } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -73,6 +74,10 @@ export default function Navbar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const updateOpen = useAppStore(state => state.updateOpen);
   const dopen = useAppStore(state => state.dopen);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'), {
+    defaultMatches: true,
+  })
 
   const navigation = useNavigate();
 
@@ -184,7 +189,8 @@ export default function Navbar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, width: isDesktop ? '100%' : '200px' }}>
+      <Grid container spacing={12} justifyContent={"center"}>
       <AppBar position="fixed" id='AppBar'>
         <Toolbar>
           <IconButton
@@ -261,6 +267,7 @@ export default function Navbar() {
           </Box>
         </Toolbar>
       </AppBar>
+      </Grid>
       {renderMobileMenu}
       {renderMenu}
     </Box>
