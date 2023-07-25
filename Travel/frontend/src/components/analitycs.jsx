@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import { Box, Grid } from "@mui/material";
+import { useTheme, useMediaQuery } from "@material-ui/core";
 import {
   Radar, 
   PolarAngleAxis,
@@ -21,6 +22,11 @@ import Page from "./page";
 import Navbar from "./navbar";
 
 export const Analitycs = () => {
+
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'), {
+    defaultMatches: true,
+  })
 
 const data = [
   {
@@ -104,13 +110,16 @@ const data2 = [
         <>
          <Navbar />
           <Box height={30} />
-            {/* <Box sx={{ display: 'flex', marginTop: 12 }}> */}
-              <Grid display={"flex"} spacing={12} marginTop={12} justifyContent="center">
+            <Box sx={{ display: 'flex', marginTop: 12 }}>
                 <Page />
-                 <div style={{ width: '100%', height: 300, marginTop: '150px', marginLeft: '-250px',display: 'flex' }}>
-
-                 <ResponsiveContainer width="100%" height="100%">
-                    <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+                 <Grid display={'flex'} flexDirection={isDesktop ? 0 :'column'} width={'100%'} height={'300px'} marginTop={isDesktop ? '150px' : '90px'} marginLeft={ isDesktop ? '-200px' : '-95px'} justifyContent="center">
+                  
+                 <ResponsiveContainer width={isDesktop ? "100%" : "100%"} height={ isDesktop ? "100%" : "40%"}>
+                    <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data} 
+                      style={{ 
+                        marginLeft: isDesktop ? '40px' : 0, 
+                        fontSize: isDesktop ? "18px" : '10px',
+                        }}>
                     <PolarGrid />
                     <Tooltip />
                     <PolarAngleAxis dataKey="name" />
@@ -120,15 +129,15 @@ const data2 = [
                     <Legend />
                     </RadarChart>
                  </ResponsiveContainer>
-
-                    <ResponsiveContainer className="compose-chart">
+                    <Grid sx={{ height: isDesktop ? '300px': '200px', marginTop: isDesktop ? 0 : '50px'}}>
+                    <ResponsiveContainer width={ isDesktop ? 740 : 400} >
                         <ComposedChart
-                            width={500}
-                            height={400}
+                            // width={ isDesktop ? 100 : 200}
+                            // height={isDesktop ? 400 : 100}
                             data={data}
                             margin={{
                             top: 20,
-                            right: 20,
+                            right: 200,
                             bottom: 20,
                             left: 20,
                             }}
@@ -143,9 +152,9 @@ const data2 = [
                             <Line type="monotone" dataKey="uv" stroke="#ff7300" />
                         </ComposedChart>
                    </ResponsiveContainer>
-                </div>
-              </Grid>
-            {/* </Box> */}
+                   </Grid>
+                  </Grid>
+            </Box>
         </>
     )
 }

@@ -61,15 +61,15 @@ export const Home = () => {
     return (
         <>
         <Navbar />
-         <Box height={30} />
-          <Box sx={{ display: 'flex', marginTop: 10  }}>
+         {/* <Box height={30} /> */}
+          <Box sx={{ display: 'flex' ,marginTop: 14  }}>
             <Page />
-            <Grid display={"block"} spacing={12} justifyContent="center">
+            <Grid display={'block'} spacing={12}>
             {getValue?.map((x, i) => {
                 return (
                   <Grid item={x?.id} xs={12} sm={6} md={4}>
                   <Card id="card-wisata" key={x?.id}>
-                    <div className="card-media">
+                    <div style={{ width: 300 }}>
                       <Carousel autoplay style={{ height: 250 }}>
                         {x?.image?.map((imageList, index) => {
                           return (
@@ -84,7 +84,6 @@ export const Home = () => {
                          <Typography id="title-wisata" gutterBottom variant="h5" component="div">
                            {x?.title}
                          </Typography>
-                         {/* <Typography className="star" >star</Typography> */}
                          <Grid xs={12} display={"flex"}>
                             <Grid item xs={6} sm={4} sx={{ paddingRight: '20px' }}>
                               <Tooltip title="Tiket Pesawat Tersedia">

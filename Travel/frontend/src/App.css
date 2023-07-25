@@ -116,10 +116,6 @@
   /* flex-direction: column; */
 }
 
-.card-media {
-  width: 300px;
-  /* object-fit: cover; */
-}
 
 .img {
   width: 300px;
@@ -155,9 +151,6 @@
   margin-top: 20px;
 }
 
-.compose-chart {
-  margin-left: -170px;
-}
 
 .star {
   width: 50px;
