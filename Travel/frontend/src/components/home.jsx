@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, ImageList, ImageListItem } from "@mui/material";
 import { AiOutlineClose } from 'react-icons/ai';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -61,11 +61,13 @@ export const Home = () => {
                 return (
                   <Card id="card-wisata" key={x?.id}>
                     <div className="card-media">
-                      <Carousel autoplay>
+                      <Carousel autoplay style={{ height: 250 }}>
                         {x?.image?.map((imageList, index) => {
                           return (
-                                <img src={imageList} alt="" />
-                                ) 
+                                <div>
+                                   <img src={imageList} alt="" className="img" />
+                                </div>
+                                )   
                           })} 
                        </Carousel>
                       </div>
