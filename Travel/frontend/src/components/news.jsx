@@ -1,5 +1,6 @@
 import { Box, Container, Tooltip } from "@mui/material";
 import Card from '@mui/material/Card';
+import { Empty } from "antd";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -19,7 +20,7 @@ export const News = () => {
     const [value2, setValue2] = React.useState(null);
 
     useEffect(() => {
-        axios.get('https://newsapi.org/v2/everything?q=flight&from=2023-06-22&sortBy=publishedAt&apiKey=1e4d7358c26843d98c618391469576e2')
+        axios.get('https://newsapi.org/v2/everything?q=tesla&from=2023-06-25&sortBy=publishedAt&apiKey=c58581499d10458788a9bfb8cc359ae4')
         .then(response => {
             setValue(response.data);
         })
@@ -36,7 +37,12 @@ export const News = () => {
           <Box height={30} />
             <Box sx={{ display: 'flex' }}>
                 <Page />
-                <ImageList sx={{ width: 1200, height: 650, marginTop: 6, marginLeft: -6 }}>
+                {value?.articles === undefined ? (
+                      <Container sx={{ marginTop: '220px' }}>
+                        <Empty />
+                      </Container>
+                ) : (
+                    <ImageList sx={{ width: 1200, height: 650, marginTop: 6, marginLeft: -6 }}>
                     <ImageListItem key="Subheader" cols={2}>
                      <ListSubheader className="News" sx={{ color: 'white'}}>News</ListSubheader>
                     </ImageListItem>
@@ -72,6 +78,7 @@ export const News = () => {
                         )
                      })}
                  </ImageList>
+                )}
             </Box>
         </>
     )
