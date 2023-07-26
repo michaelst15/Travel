@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import Cookies from 'js-cookie';
 import User from './image/user.png';
+import backgroundUser from './image/background-user.jpg';
 import { Form, Input, Button, Checkbox, Card, Typography } from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import axios from "axios";
@@ -53,6 +54,16 @@ export default function Daftar() {
 
   return (
     <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      background: `url(${backgroundUser})`, // Apply the background image here
+      backgroundSize: "cover", // Adjust the background size as needed
+    }}
+  >
+    <div
       style={{
         display: "flex",
         justifyContent: "center",
@@ -60,7 +71,7 @@ export default function Daftar() {
         height: "100vh",
       }}
     >
-      <Card style={{ width: 500 }}>
+      <Card style={{ width: 500,  backgroundColor: "#c9d6ff" }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <img src={User} alt="" style={{ width: 70, marginBottom: 20 }} />
         </div>
@@ -129,9 +140,14 @@ export default function Daftar() {
             >
               Sign up
             </Button>
+            Punya akun{" "}? {" "}
+            <a href="" onClick={() => navigation('/')}>
+              log in
+            </a>
           </Form.Item>
         </Form>
       </Card>
+    </div>
     </div>
   );
 };

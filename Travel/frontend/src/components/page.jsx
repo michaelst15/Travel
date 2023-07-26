@@ -162,7 +162,7 @@ export default function Page() {
                 >
                   <img src={InfoPesanan} alt="" style={{ width: 30 }} />
                 </ListItemIcon>
-                <ListItemText primary="Info Pesanan" primaryTypographyProps={{ style: { fontFamily: 'Merriweather' } }} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Detail Booking" primaryTypographyProps={{ style: { fontFamily: 'Merriweather' } }} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
 
