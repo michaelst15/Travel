@@ -115,7 +115,7 @@ export default function Login() {
             >
               Log in
             </Button>
-            Belum punya akun{" "}
+            Belum punya akun{" "}? {" "}
             <a href="" onClick={handleRegister}>
               sign up
             </a>
