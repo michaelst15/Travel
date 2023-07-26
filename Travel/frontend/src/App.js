@@ -1,8 +1,8 @@
 import React, { lazy } from 'react';
 import './App.css';
 import Login from './components/login';
+import Daftar from './components/daftar';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import Page from './components/page';
 import { Home } from './components/home';
 import { Wisata } from './components/wisata';
 import { Analitycs } from './components/analitycs';
@@ -11,19 +11,15 @@ import { InfoPesanan } from './components/infoPesanan';
 import { Ticket } from './components/tickets';
 import { Pesawat } from './components/transport/pesawat';
 import { Kereta } from './components/transport/kereta';
-import { Daftar } from './components/daftar';
+import { Profile } from './components/account';
 
 function App() {
-  // const Pesanan = lazy(() =>
-  //  import('./components/infoPesanan').then(module => ({
-  //   default: module.InfoPesanan
-  //  }))
-  // )
   return (
     <>
       <BrowserRouter>
         <Routes>
             <Route path='/' exact element={<Login />} />
+            <Route  path='/profile' element={<Profile />} />
             <Route path='/Daftar' element={ <Daftar />} />
             <Route path='/home' element={ <Home />} />
             <Route path='/wisata' element={<Wisata />} />

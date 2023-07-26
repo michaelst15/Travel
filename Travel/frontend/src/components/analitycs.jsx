@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Card } from "@mui/material";
 import { useTheme, useMediaQuery } from "@material-ui/core";
 import {
   Radar, 
@@ -113,7 +113,6 @@ const data2 = [
             <Box sx={{ display: 'flex', marginTop: 12 }}>
                 <Page />
                  <Grid display={'flex'} flexDirection={isDesktop ? 0 :'column'} width={'100%'} height={'300px'} marginTop={isDesktop ? '150px' : '90px'} marginLeft={ isDesktop ? '-200px' : '-95px'} justifyContent="center">
-                  
                  <ResponsiveContainer width={isDesktop ? "100%" : "100%"} height={ isDesktop ? "100%" : "40%"}>
                     <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data} 
                       style={{ 
@@ -129,6 +128,7 @@ const data2 = [
                     <Legend />
                     </RadarChart>
                  </ResponsiveContainer>
+
                     <Grid sx={{ height: isDesktop ? '300px': '200px', marginTop: isDesktop ? 0 : '50px'}}>
                     <ResponsiveContainer width={ isDesktop ? 740 : 400} >
                         <ComposedChart
@@ -151,8 +151,8 @@ const data2 = [
                             <Bar dataKey="pv" barSize={20} fill="#413ea0" />
                             <Line type="monotone" dataKey="uv" stroke="#ff7300" />
                         </ComposedChart>
-                   </ResponsiveContainer>
-                   </Grid>
+                      </ResponsiveContainer>
+                      </Grid>
                   </Grid>
             </Box>
         </>
