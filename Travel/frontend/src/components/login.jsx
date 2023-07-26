@@ -51,21 +51,13 @@ export default function Login() {
 
   return (
     <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",
-      background: `url(${backgroundUser})`, // Apply the background image here
-      backgroundSize: "cover", // Adjust the background size as needed
-    }}
-  >
-    <div
       style={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
+        background: `url(${backgroundUser})`, // Apply the background image here
+        backgroundSize: "cover",
       }}
     >
       <Card style={{ width: 500, backgroundColor: "#c9d6ff" }}>
@@ -133,7 +125,6 @@ export default function Login() {
           </Form.Item>
         </Form>
       </Card>
-    </div>
     </div>
   );
 };
