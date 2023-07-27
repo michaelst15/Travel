@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Grid, Card, Typography } from "@mui/material";
+import { Box, Grid, Card, Typography, Container } from "@mui/material";
 import userProfile from './image/userProfile.jpg';
+import { Result } from 'antd';
 import Navbar from "./navbar";
 import Page from "./page";
 import axios from "axios";
@@ -10,9 +11,17 @@ export const Profile = () => {
      return (
        <>
          <Navbar />
-         <Box sx={{ display: 'flex', margin: 20 }}>
+         <Box sx={{ display: 'flex' }}>
           <Page />
-          <Grid container xs={12}>
+          <Container sx={{ marginTop: '170px' }}>
+              <Result  
+              status="403"
+              title="Pengembangan"
+              subTitle="Maaf, masih dalam pengembangan"
+              // extra={<Button type="primary">Back Home</Button>}
+            />
+            </Container>
+          {/* <Grid container xs={12}>
             <Grid xs={1} sx={{ marginTop: '155px' }}>
             <img src={userProfile} alt="" style={{ width: '100px', borderRadius: 30 }} />
             <Typography sx={{ paddingTop: 1, paddingLeft: 4, fontFamily: 'Edu SA Beginner, cursive' }}>User</Typography>
@@ -24,7 +33,7 @@ export const Profile = () => {
                <Typography sx={{ paddingLeft: '100px', paddingBottom: '20px', fontFamily: 'Edu SA Beginner, cursive' }}>Password {" "}: {" "} mike123</Typography>
             </Card>
             </Grid>
-          </Grid>
+          </Grid> */}
           </Box>
        </>
      )
