@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../navbar";
+import Typewritter from 'typewriter-effect';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import { UploadOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Modal, InputNumber, Select, Upload } from 'antd';
 import { Grid } from '@material-ui/core';
@@ -12,6 +15,7 @@ export const Kereta = (props) => {
 
       const { RangePicker } = DatePicker;
       const [open, setOpen] = useState(false);
+      const [valueTelp, setValueTelp] = useState();
       const showOtherData = () => {
         setOpen(true);
       };
@@ -20,6 +24,11 @@ export const Kereta = (props) => {
       };
 
       const { Option } = Select;
+
+      const phoneInputStyle =  {
+        border: '1px solid white',
+        width: '200px'
+      }
 
       const normFile = (e) => {
         console.log('Upload event:', e);
@@ -75,7 +84,7 @@ export const Kereta = (props) => {
                 <Grid xs={2} style={{ marginLeft: 88 }}>
                 <Form.Item
                   name="age"
-                  label="Umur"
+                  label="Age"
                 >
                   <InputNumber />
                 </Form.Item>
@@ -133,7 +142,16 @@ export const Kereta = (props) => {
                     }} />
                  </Grid>
                     <Card sx={{ width: '100%', marginLeft: '-30px', boxShadow: '1px 1px 10px 1px gray' }}>
-                      <Typography textAlign={'center'} mt={'15px'}>Reservasi Kereta</Typography>
+                      <Typography textAlign={'center'} mt={'15px'} fontFamily={'Inter, sans-serif;'}>RESERVASI KERETA</Typography>
+                      <div style={{ textAlign: 'center', color: '#376abd', fontFamily: 'Inter, sans-serif',  marginTop: '10px' }}>
+                      <Typewritter
+                        options={{
+                          strings: ['Please make sure that you fill in your data correctly.'],
+                          autoStart: true,
+                          loop: true,
+                        }}
+                      />
+                      </div>
                       <Form.Provider
                         onFormFinish={(name, { values, forms }) => {
                           if (name === 'userForm') {
@@ -194,7 +212,14 @@ export const Kereta = (props) => {
                               label="Phone Number"
                               rules={[{ required: true, message: 'Please input your phone number!' }]}
                             >
-                              <Input addonBefore={prefixSelector} style={{ width: '200px' }} />
+                               <PhoneInput
+                                 international
+                                 defaultCountry="ID"
+                                 style={phoneInputStyle}
+                                 placeholder="Masukkan nomor telpon"
+                                 value={valueTelp}
+                                 onChange={setValueTelp}
+                              />
                             </Form.Item>
                             </Grid>
                               <Form.Item label=" ">
@@ -208,101 +233,6 @@ export const Kereta = (props) => {
                           </Form.Provider>
                       </Card>
                   </Grid>
-                {/* <div style={{ display: 'flex', flexDirection: 'column', marginTop: '50px' }}>
-                    <Card id="CardPromo" sx={{ width: 1250, height: '400px', marginLeft: '-40px', display: 'flex', borderRadius: '20px' }}>
-                       <img src={LogoPromoPesawat} alt="" style={{ width: '600px', height: '300px', marginLeft: '20px', marginTop: '25px', borderRadius: '20px'  }} />
-                       <img src={LogoPromoPesawat2} alt="" style={{ width: '560px', height: '300px', marginLeft: '50px', marginTop: '25px', borderRadius: '20px'  }} />
-                    </Card>
-                    <Card id="formKeberangkatan">
-                        <form>
-                            <Grid container spacing={5} style={{ marginLeft: '80px', marginTop: '30px' }}>
-                               <Grid xs={12} sm={5} item>
-                                  <TextField
-                                    id="standard-select-currency"
-                                    select
-                                    style={{ width: '200px' }}
-                                    InputProps={{
-                                      endAdornment: (
-                                        <LiaPlaneDepartureSolid className='logoPesawat' />
-                                      ),
-                                    }}
-                                    label="Dari"
-                                    defaultValue="EUR"
-                                    variant="standard"
-                                    >
-                                  </TextField>
-                               </Grid>
-                               <Grid xs={1} style={{ marginLeft: '-50px', marginTop: '35px' }}>
-                                 <HiPaperAirplane />
-                               </Grid>
-                               <Grid xs={12} sm={6} item>
-                               <TextField
-                                    id="standard-select-currency"
-                                    select
-                                    style={{ width: '200px' }}
-                                    InputProps={{
-                                      endAdornment: (
-                                        <LiaPlaneArrivalSolid className='logoPesawat' />
-                                      ),
-                                    }}
-                                    label="Menuju"
-                                    defaultValue="EUR"
-                                    variant="standard"
-                                    >
-                                  </TextField>
-                               </Grid>
-                               <Grid xs={12} sm={5} item>
-                                 <Space direction="vertical">
-                                  <DatePicker placeholder="Jadwal Berangkat" style={{ height: '50px', width: '200px' }}/>
-                                 </Space>
-                               </Grid>
-                               <Grid xs={1} style={{ marginLeft: '-50px', marginTop: '35px' }}>
-                                 <HiPaperAirplane />
-                               </Grid>
-                               <Grid xs={12} sm={6} item>
-                                  <Space direction="vertical">
-                                    <DatePicker placeholder="Jadwal Pulang" style={{ height: '50px', width: '200px' }} />
-                                  </Space>
-                                </Grid>
-                                    <Grid xs={12} sm={6} item>
-                                        <TextField
-                                          id="outlined-number"
-                                          InputProps={{
-                                          endAdornment: (
-                                            <BsFillPeopleFill style={{ marginLeft: '-195px' }} />
-                                            )
-                                           }}
-                                          style={{ marginLeft: '4px', width: '200px' }}
-                                          label="Jumlah Penumpang"
-                                          type="number"
-                                          InputLabelProps={{
-                                            shrink: true,
-                                          }}
-                                        />
-                                    </Grid>
-                                    <Grid xs={12} sm={6} item>
-                                        <TextField
-                                            id="standard-select-currency"
-                                            select
-                                            InputProps={{
-                                              endAdornment: (
-                                                <MdAirlineSeatReclineExtra className="logoClass" />
-                                              )
-                                            }}
-                                            style={{ width: '200px', marginLeft: '-46px'}}
-                                            label="Class"
-                                            defaultValue="EUR"
-                                            variant="standard"
-                                            >
-                                        </TextField>
-                                     </Grid>
-                                     <Grid xs={12} sm={6} style={{ marginLeft: '356px', marginTop: '15px'}}>
-                                       <Button id="button-form-pesawat">Check</Button>
-                                    </Grid>
-                            </Grid>
-                        </form>
-                    </Card>
-                </div> */}
            </Box>
        </>
     )
