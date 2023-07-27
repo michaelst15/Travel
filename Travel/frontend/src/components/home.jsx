@@ -126,14 +126,14 @@ export const Home = () => {
                               <div style={{ display: 'flex', marginTop: '13px' }}>
                                <img src={PlaneModal} alt="" style={{ width: '30px',  marginLeft: '54px' }} />
                               <Button id="btn-via-pesawat" sx={{ marginLeft: '31px', marginTop: '10px' }} 
-                                onClick={() =>  navigation(`/info-pesanan/${x?.id}`, { state: x }) }
+                                onClick={() =>  navigation(`/pesawat`, { state: x }) }
                                 >Via Pesawat
                               </Button>
                               </div>
                               <br />
                               <div style={{ display: 'flex' }}>
                                <img src={TrainModal} alt="" style={{ width: '30px', marginLeft: '65px' }} /> 
-                              <Button id="btn-via-kereta" sx={{ marginLeft: '23px', marginTop: '5px' }} onClick={() => navigation(`/info-pesanan/${x?.id}`, { state: x })}>Via Kereta</Button>
+                              <Button id="btn-via-kereta" sx={{ marginLeft: '23px', marginTop: '5px' }} onClick={() => navigation(`/kereta`, { state: x })}>Via Kereta</Button>
                               </div>
                              </Box>
                            </Modal>

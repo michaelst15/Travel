@@ -74,7 +74,8 @@ export const Pesawat = (props) => {
           rules: [
             {
               type: 'array',
-              message: 'Please select time!',
+              required: true,
+              message: 'Please select departure & return dates !',
             },
           ],
         };
@@ -154,6 +155,80 @@ export const Pesawat = (props) => {
               }
             ]
           },
+          {
+            id: '3',
+            title: 'Jawa Tengah',
+            value: '0-2',
+            children: [
+              {
+                title: 'Magelang',
+                value: '0-0-13',
+                isLeaf: true,
+              },
+              {
+                title: 'Pekalongan',
+                value: '0-0-14',
+                isLeaf: true,
+              },
+              {
+                title: 'Bekasi',
+                value: '0-0-15',
+                isLeaf: true,
+              },
+              {
+                title: 'Salatiga',
+                value: '0-0-16',
+                isLeaf: true,
+              },
+              {
+                title: 'Semarang',
+                value: '0-0-17',
+                isLeaf: true,
+              },
+              {
+                title: 'Surakarta',
+                value: '0-0-18',
+                isLeaf: true,
+              }
+            ]
+          },
+          {
+            id: '4',
+            title: 'Jawa Timur',
+            value: '0-3',
+            children: [
+              {
+                title: 'Bangkalan',
+                value: '0-0-19',
+                isLeaf: true,
+              },
+              {
+                title: 'Banyuwangi',
+                value: '0-0-20',
+                isLeaf: true,
+              },
+              {
+                title: 'Blitar',
+                value: '0-0-21',
+                isLeaf: true,
+              },
+              {
+                title: 'Bojonegoro',
+                value: '0-0-22',
+                isLeaf: true,
+              },
+              {
+                title: 'Jember',
+                value: '0-0-23',
+                isLeaf: true,
+              },
+              {
+                title: 'Kediri',
+                value: '0-0-24',
+                isLeaf: true,
+              }
+            ]
+          },
         ]);
 
         const onLoadData = ({ id }) => 
@@ -171,6 +246,7 @@ export const Pesawat = (props) => {
                 <Form.Item
                   name="email"
                   label="Email"
+                  rules={[{ required: true, message: 'Please input your email!' }]}
                 >
                   <Input type="email" style={{ width: 235 }} />
                 </Form.Item>
@@ -179,6 +255,7 @@ export const Pesawat = (props) => {
                 <Form.Item
                   name="tujuan"
                   label="Tujuan"
+                  rules={[{ required: true, message: 'Please input your objective!' }]}
                 >
                    <TreeSelect
                     style={{ width: '150px' }}
@@ -193,7 +270,11 @@ export const Pesawat = (props) => {
                 </Form.Item>
                 </Grid>
                 <Grid xs={6}>
-                <Form.Item name="range-picker" label="Tanggal Berangkat & Pulang" {...rangeConfig}>
+                <Form.Item 
+                 name="range-picker" 
+                 label="Tanggal Berangkat & Pulang" 
+                 {...rangeConfig}
+                 >
                   <RangePicker />
                 </Form.Item>
                 </Grid>
@@ -201,6 +282,7 @@ export const Pesawat = (props) => {
                 <Form.Item
                   name="upload"
                   label="Upload KTP"
+                  rules={[{ required: true, message: 'Please input your KTP!' }]}
                   valuePropName="fileList"
                   getValueFromEvent={normFile}
                 >
@@ -278,6 +360,7 @@ export const Pesawat = (props) => {
                               <Form.Item
                                 label="Nama Penumpang"
                                 name="username"
+                                rules={[{ required: true, message: 'Please input your name!' }]}
                               >
                                 <Input style={{ width: 200 }}/>
                               </Form.Item>
@@ -286,6 +369,7 @@ export const Pesawat = (props) => {
                               <Form.Item
                                 label="Tanggal Lahir"
                                 name="date"
+                                rules={[{ required: true, message: 'Please input your date of birth!' }]}
                               >
                                 <DatePicker style={{ width: 200 }}/>
                               </Form.Item>
@@ -294,6 +378,7 @@ export const Pesawat = (props) => {
                               <Form.Item
                                 label="Alamat Penumpang"
                                 name="alamat"
+                                rules={[{ required: true, message: 'Please input your address!' }]}
                               >
                                 <Input type="text" style={{ width: 200 }}/>
                               </Form.Item>
