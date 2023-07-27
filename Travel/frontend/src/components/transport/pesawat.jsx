@@ -16,7 +16,7 @@ import {
 } from 'antd';
 import { Grid } from '@material-ui/core';
 import { Box, Card, Typography } from "@mui/material";
-import Plane from '../image/plane.jpg';
+import Plane from '../image/TravelPlane.jpg';
 import { DatePicker } from 'antd'
 import Page from "../page";
   

@@ -6,7 +6,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Modal, InputNumber, Select, Upload } from 'antd';
 import { Grid } from '@material-ui/core';
 import { Box, Card, Typography } from "@mui/material";
-import Train from '../image/Train.jpg';
+import Train from '../image/TravelTrain.jpg';
 import { DatePicker, TreeSelect } from 'antd'
 import Page from "../page";
   

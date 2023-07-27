@@ -20,7 +20,7 @@ export const News = () => {
     const [value2, setValue2] = React.useState(null);
 
     useEffect(() => {
-        axios.get('https://newsapi.org/v2/everything?q=tesla&from=2023-06-25&sortBy=publishedAt&apiKey=c58581499d10458788a9bfb8cc359ae4')
+        axios.get('https://newsapi.org/v2/everything?q=tesla&from=2023-06-27&sortBy=publishedAt&apiKey=c58581499d10458788a9bfb8cc359ae4')
         .then(response => {
             setValue(response.data);
         })
