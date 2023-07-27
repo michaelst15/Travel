@@ -4,7 +4,16 @@ import Typewritter from 'typewriter-effect';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Modal, InputNumber, Select, Upload } from 'antd';
+import { 
+  Button, 
+  Form, 
+  Input, 
+  Modal, 
+  InputNumber, 
+  Select, 
+  Upload, 
+  TreeSelect 
+} from 'antd';
 import { Grid } from '@material-ui/core';
 import { Box, Card, Typography } from "@mui/material";
 import Plane from '../image/plane.jpg';
@@ -16,6 +25,7 @@ export const Pesawat = (props) => {
       const { RangePicker } = DatePicker;
       const [open, setOpen] = useState(false);
       const [valueTelp, setValueTelp] = useState();
+      const [valueTujuan, setValueTujuan] = useState();
       const showOtherData = () => {
         setOpen(true);
       };
@@ -69,6 +79,90 @@ export const Pesawat = (props) => {
           ],
         };
 
+        const [treeData, setTreeData] = useState([
+          {
+            id: '1',
+            title: 'Sumatera Utara',
+            value: '0-0',
+            children: [
+              {
+                title: 'Medan',
+                value: '0-0-1',
+                isLeaf: true,
+              },
+              {
+                title: 'Rantau Parapat',
+                value: '0-0-2',
+                isLeaf: true,
+              },
+              {
+                title: 'Lubuk Pakam',
+                value: '0-0-3',
+                isLeaf: true,
+              },
+              {
+                title: 'Sibolga',
+                value: '0-0-4',
+                isLeaf: true,
+              },
+              {
+                title: 'Sipirok',
+                value: '0-0-5',
+                isLeaf: true,
+              },
+              {
+                title: 'Padangsidempuan',
+                value: '0-0-6',
+                isLeaf: true,
+              },
+            ],
+          },
+          {
+            id: '2',
+            title: 'Jawa Barat',
+            value: '0-1',
+            children: [
+              {
+                title: 'Bandung',
+                value: '0-0-7',
+                isLeaf: true,
+              },
+              {
+                title: 'Banjar',
+                value: '0-0-8',
+                isLeaf: true,
+              },
+              {
+                title: 'Bekasi',
+                value: '0-0-9',
+                isLeaf: true,
+              },
+              {
+                title: 'Bogor',
+                value: '0-0-10',
+                isLeaf: true,
+              },
+              {
+                title: 'Cimahi',
+                value: '0-0-11',
+                isLeaf: true,
+              },
+              {
+                title: 'Cirebon',
+                value: '0-0-12',
+                isLeaf: true,
+              }
+            ]
+          },
+        ]);
+
+        const onLoadData = ({ id }) => 
+           new Promise ((resolve) => {
+            setTimeout(() => {
+              resolve(undefined);
+            }, 500);
+           })
+
         return (
           <Modal title="Detail Reservasi" style={{ marginLeft: 550, marginTop: 100 }} open={open} onOk={onOk} onCancel={onCancel}>
             <Form style={{ marginTop: 40 }} form={form} layout="vertical" name="userForm">
@@ -78,15 +172,24 @@ export const Pesawat = (props) => {
                   name="email"
                   label="Email"
                 >
-                  <Input type="email" style={{ width: 200 }} />
+                  <Input type="email" style={{ width: 235 }} />
                 </Form.Item>
                 </Grid>
                 <Grid xs={2} style={{ marginLeft: 88 }}>
                 <Form.Item
-                  name="age"
-                  label="Age"
+                  name="tujuan"
+                  label="Tujuan"
                 >
-                  <InputNumber />
+                   <TreeSelect
+                    style={{ width: '150px' }}
+                    treeDataSimpleMode
+                    value={valueTujuan}
+                    dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                    treeData={treeData}
+                    loadData={onLoadData}
+                    placeholder="Please select"
+                    onChange={(e) => console.log(e)}
+                  />
                 </Form.Item>
                 </Grid>
                 <Grid xs={6}>

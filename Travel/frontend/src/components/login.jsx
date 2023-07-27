@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import User from './image/user.png';
 import backgroundUser from './image/background-user.jpg';
 import { Form, Input, Button, Checkbox, Card, Typography, message } from "antd";
-import { MailOutlined, LockOutlined } from "@ant-design/icons";
+import { MailOutlined, LockOutlined, EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import axios from "axios";
 const { Title } = Typography;
 
@@ -91,6 +91,7 @@ export default function Login() {
             <Input
               onChange={(e) => setPassword(e.target.value)}
               prefix={<LockOutlined className="site-form-item-icon" />}
+              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
               type="password"
               placeholder="Password"
             />
