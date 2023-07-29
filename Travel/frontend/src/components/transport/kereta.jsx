@@ -389,7 +389,7 @@ export const Kereta = (props) => {
                             <Grid xs={6}>
                             <Form.Item
                               name="phone"
-                              label="Phone Number"
+                              label="Nomor Telepon"
                               rules={[{ required: true, message: 'Please input your phone number!' }]}
                             >
                               <PhoneInput
