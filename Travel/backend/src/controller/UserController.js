@@ -1,42 +1,24 @@
 import { UserDb } from "../model/regis.js";
-import jwt from 'jsonwebtoken';
-import passport from 'passport';
-import bcrypt from 'bcryptjs';
 
-
-const getLocal = async (email, password, done) => {
-  try {
-    let user = await UserDb.findOne({email}).select('-__v -token');
-    if(!user) return done;
-    if(bcrypt.compareSync(password, user.password)) {
-      ({ password, ...useWithoutPassword } = user.toJson());
-      return done(null, useWithoutPassword)
-    }
-  } catch(err) {
-     done(err, null)
-  }
-  done();
-}
 
 export const login = async (req, res, next) => {
 
-  passport.authenticate('local', async(err, user) => {
-    if(err) return next(err);
-
-    if(!user) return res.json({ message: 'Email atau Password salah' });
-
-    let signed = jwt.sign(user, process.env.SECRET_KEY);
-
-    await UserDb.findByIdAndUpdate(user._id, {$push: {token: signed}});
-
-    res.json({
-      message: 'Login Berhasil',
-      user,
-      token: signed
-    })
-  })(req, res, next)
- 
-  };
+    try {
+     const user = await UserDb.findOne({ email: req.body.email });
+     if(user) {
+      const result = req.body.password === user.password;
+      if(result) {
+        res.status(200).json({ message: 'login berhasil' });
+      } else {
+        res.status(400).json({ error: "password doesn't match" });
+      } 
+     } else {
+        res.status(400).json({ message: "User doesn't exits" });
+     }
+  } catch(error) {
+    res.status(400).json({ error });
+  }
+}
 
 export const Register = async(req, res, next) => {
      try {
