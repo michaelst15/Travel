@@ -1,16 +1,11 @@
-import { Sequelize } from 'sequelize';
+import mongoose from 'mongoose';
 
-const db = new Sequelize('mysql', 'root',  '', {
-    host: 'localhost',
-    dialect: 'mysql',
-});
+const db = mongoose.connection;
 
-db
-.authenticate()
-.then(() => console.log('success'))
-.catch((err) => console.log(err.message))
+mongoose.connect(`mongodb+srv://misuto991:PWVJ5kQ6PwAVTCBa@cluster0.dcmjwb0.mongodb.net/user?retryWrites=true&w=majority`);
+
+db.on('open', () => console.log('success connect'));
+db.once('error', () => console.log('not connect'));
 
 export default db;
-
-
 

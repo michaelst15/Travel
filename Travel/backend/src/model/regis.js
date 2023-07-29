@@ -1,38 +1,27 @@
-import { DataTypes } from "sequelize";
-import db from "../database/db.js";
+import mongoose from "mongoose";
 
-const User = db.define('register', {
+const User = new mongoose.Schema ({
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
+        type: Number,
     },
     nama: {
-        type: DataTypes.STRING,
+        type: String,
         allowNull: false,
-        validate: {
-            notNull: { args: true, msg: "You must enter a name" }
-        },
     },
     email: {
-        type: DataTypes.STRING,
+        type: String,
         allowNull: false,
-        validate: {
-            notNull: { args: true, msg: "You must enter a email" }
-        },
     },
     password: {
-        type: DataTypes.STRING,
+        type: String,
         allowNull: false,
-        validate: {
-            notNull: { args: true, msg: "You must enter a password" }
-        },
     }
 }, {
     timestamps: false,
-    tableName: 'register'
+    collection: "register",
 }
 );
 
-export default User;
+export const UserDb = new mongoose.model("register", User)
+
+// export default UserDb;

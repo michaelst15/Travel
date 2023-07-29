@@ -1,4 +1,4 @@
-import User from "../model/regis.js";
+import { UserDb } from "../model/regis.js";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
@@ -8,7 +8,7 @@ export const login = async (req, res, next) => {
   const jwtKey = "Secret_Key";
 
     try {
-      const user = await User.findOne({
+      const user = await UserDb.findOne({
         where: {
           email: req.body.email,
           password: req.body.password
@@ -46,27 +46,42 @@ export const login = async (req, res, next) => {
     }
   };
 
-export const Register = async(req, res, next) => {
-         const { nama, email, password } = req.body;
-         const alreadyUser = await User.findOne({ where: { email } })
-         .catch((err) => {
-            console.log("error", err);
-         });
-
-        if(alreadyUser) {
-            return res.status(400).json({ message: "Email sudah dipakai" })
+export const Register = (req, res, next) => {
+     try{
+     const user = UserDb(req.body);
+       user.save();
+      res.send(user)
+     }
+    catch(err) {
+        if(err && err.name === 'ValidationError'){
+            return res.json({
+                error: 1,
+                message: err.message,
+                fields: err.errors
+            });
         }
+        next(err);
+    }
+        //  const { nama, email, password } = req.body;
+        //  const alreadyUser = await User.findOne({ where: { email } })
+        //  .catch((err) => {
+        //     console.log("error", err);
+        //  });
 
-        const newUser = new User({ nama, email, password });
-        const saveUser = await newUser.save()
-        .catch((err) => {
-            console.log("error", err);
-            res.status(500).json({ error: "Tidak dapat mendaftar pengguna" })
-        })
+        // if(alreadyUser) {
+        //     return res.status(400).json({ message: "Email sudah dipakai" })
+        // }
 
-        if(saveUser) {
-            res.json({ message: "Registrasi berhasil" })
-        }
+        // const newUser = new User({ nama, email, password });
+        // const saveUser = await newUser.save()
+        // .catch((err) => {
+        //     console.log("error", err);
+        //     res.status(500).json({ error: "Tidak dapat mendaftar pengguna" })
+        // })
+
+        // if(saveUser) {
+        //     res.json({ message: "Registrasi berhasil" })
+        // }
 
 }
 

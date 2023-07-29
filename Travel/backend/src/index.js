@@ -9,4 +9,4 @@ app.use(cors());
 app.use(express.json());
 app.use(useRoute);
 
-app.listen(5000, () => console.log('successfull'));
+app.listen(5000, () => console.log('http://localhost:5000 already'));
