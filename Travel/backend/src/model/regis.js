@@ -1,9 +1,6 @@
-import mongoose from "mongoose";
+import {Schema, model} from "mongoose";
 
-const User = new mongoose.Schema ({
-    id: {
-        type: Number,
-    },
+const User = Schema ({
     nama: {
         type: String,
         allowNull: false,
@@ -22,6 +19,6 @@ const User = new mongoose.Schema ({
 }
 );
 
-export const UserDb = new mongoose.model("register", User)
+export const UserDb = model("register", User)
 
-// export default UserDb;
+export default UserDb;

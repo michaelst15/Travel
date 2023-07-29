@@ -1,56 +1,50 @@
 import { UserDb } from "../model/regis.js";
 import jwt from 'jsonwebtoken';
+import passport from 'passport';
 import bcrypt from 'bcryptjs';
 
 
+const getLocal = async (email, password, done) => {
+  try {
+    let user = await UserDb.findOne({email}).select('-__v -token');
+    if(!user) return done;
+    if(bcrypt.compareSync(password, user.password)) {
+      ({ password, ...useWithoutPassword } = user.toJson());
+      return done(null, useWithoutPassword)
+    }
+  } catch(err) {
+     done(err, null)
+  }
+  done();
+}
+
 export const login = async (req, res, next) => {
 
-  const jwtKey = "Secret_Key";
+  passport.authenticate('local', async(err, user) => {
+    if(err) return next(err);
 
-    try {
-      const user = await UserDb.findOne({
-        where: {
-          email: req.body.email,
-          password: req.body.password
-        }
-      });
-  
-      if (user) {
+    if(!user) return res.json({ message: 'Email atau Password salah' });
 
-        let token = jwt.sign({ email: user.email }, 
-            jwtKey, {
-              algorithm: "HS256",
-              expiresIn: 300,
-            } 
-          )
+    let signed = jwt.sign(user, process.env.SECRET_KEY);
 
-        if (bcrypt.compare(req.body.password, user.password)) {
-          res.status(200).send({
-            id: user.id,
-            nama: user.nama,
-            email: user.email,
-            password: user.password,
-            token,
-          });
-        }
-      } else {
-        res.status(404).json({
-          message: 'Email atau password salah'
-        });
-      }
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({
-        message: 'Internal server error'
-      });
-    }
+    await UserDb.findByIdAndUpdate(user._id, {$push: {token: signed}});
+
+    res.json({
+      message: 'Login Berhasil',
+      user,
+      token: signed
+    })
+  })(req, res, next)
+ 
   };
 
-export const Register = (req, res, next) => {
-     try{
-     const user = UserDb(req.body);
-       user.save();
-      res.send(user)
+export const Register = async(req, res, next) => {
+     try {
+      const payload = req.body;
+      let user = new UserDb(payload);
+      await user.save();
+      return res.json(user);
+
      }
     catch(err) {
         if(err && err.name === 'ValidationError'){
@@ -62,26 +56,6 @@ export const Register = (req, res, next) => {
         }
         next(err);
     }
-        //  const { nama, email, password } = req.body;
-        //  const alreadyUser = await User.findOne({ where: { email } })
-        //  .catch((err) => {
-        //     console.log("error", err);
-        //  });
-
-        // if(alreadyUser) {
-        //     return res.status(400).json({ message: "Email sudah dipakai" })
-        // }
-
-        // const newUser = new User({ nama, email, password });
-        // const saveUser = await newUser.save()
-        // .catch((err) => {
-        //     console.log("error", err);
-        //     res.status(500).json({ error: "Tidak dapat mendaftar pengguna" })
-        // })
-
-        // if(saveUser) {
-        //     res.json({ message: "Registrasi berhasil" })
-        // }
 
 }
 
