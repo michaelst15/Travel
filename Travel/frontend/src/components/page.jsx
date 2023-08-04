@@ -103,6 +103,28 @@ export default function Page() {
         </DrawerHeader>
         <Divider />
         <List>
+
+        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigation('/dashboard')}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <img src={Chart} alt="" style={{ width: 30 }} />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" primaryTypographyProps={{ style: { fontFamily: 'Merriweather' } }} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+
             <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigation('/home')}>
               <ListItemButton
                 sx={{
@@ -166,8 +188,8 @@ export default function Page() {
               </ListItemButton>
             </ListItem>
 
-            <Sidebar>
-                <Menu>
+            <Sidebar style={{ marginTop: '-6px' }} >
+                <Menu>  
                     <SubMenu 
                      label="Tiket" 
                      icon={<img src={Tickets} alt="Travel Icon" style={{ width: 24, height: 35, marginLeft: '-30px' }} />} 
@@ -180,31 +202,10 @@ export default function Page() {
                 </Menu>
             </Sidebar>
 
-            <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigation('/analytics')}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <img src={Chart} alt="" style={{ width: 30 }} />
-                </ListItemIcon>
-                <ListItemText primary="Populer" primaryTypographyProps={{ style: { fontFamily: 'Merriweather' } }} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-
             <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigation('/news')}>
                 <ListItemButton
                     sx={{
-                    marginTop: 1,
+                    marginTop: '-10px',
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,

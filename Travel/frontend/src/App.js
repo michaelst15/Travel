@@ -27,7 +27,7 @@ function App() {
             <Route path='/ticket' element={<Ticket />} />
             <Route path='/pesawat' element={<Pesawat />} />
             <Route path='/kereta' element={ <Kereta />} />
-            <Route path='/analytics' element={ <Analitycs />} />
+            <Route path='/dashboard' element={ <Analitycs />} />
             <Route path='/news' element={<News />} />
         </Routes>
       </BrowserRouter>

@@ -1,4 +1,5 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, useEffect, useRef } from "react";
+import { useReactToPrint } from 'react-to-print';
 import { Box, Grid, Card } from "@mui/material";
 import { useTheme, useMediaQuery } from "@material-ui/core";
 import {
@@ -24,6 +25,11 @@ import Navbar from "./navbar";
 export const Analitycs = () => {
 
   const theme = useTheme();
+  const componentPDF = useRef();
+  const generatePDF = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle: 'PDF',
+  });
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'), {
     defaultMatches: true,
   })
@@ -112,7 +118,8 @@ const data2 = [
           <Box height={30} />
             <Box sx={{ display: 'flex', marginTop: 12 }}>
                 <Page />
-                 <Grid display={'flex'} flexDirection={isDesktop ? 0 :'column'} width={'100%'} height={'300px'} marginTop={isDesktop ? '150px' : '90px'} marginLeft={ isDesktop ? '-200px' : '-95px'} justifyContent="center">
+                  <div ref={componentPDF} style={{ width: '100%', marginLeft: '-150px' }}>
+                 <Grid display={'flex'} flexDirection={isDesktop ? 0 :'column'} width={'100%'} height={'300px'} marginTop={isDesktop ? '130px' : '90px'} marginLeft={ isDesktop ? '-39px' : '-95px'} justifyContent="center">
                  <ResponsiveContainer width={isDesktop ? "100%" : "100%"} height={ isDesktop ? "100%" : "40%"}>
                     <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data} 
                       style={{ 
@@ -154,6 +161,58 @@ const data2 = [
                       </ResponsiveContainer>
                       </Grid>
                   </Grid>
+                  </div>
+                      <button 
+                       style={{ 
+                        marginTop: '490px',
+                        fontSize: '14px',
+                        border: '1px solid white',
+                        borderRadius: '10px',
+                        color: 'white',
+                        height: '50px', 
+                        width: '160px', 
+                        marginLeft: '-820px',
+                        backgroundImage: 'radial-gradient(circle, #3dc8dc, #25c2e1, #05bbe5, #00b3e9, #12abeb)',
+                        cursor: 'pointer' 
+                        }} 
+                        onClick={generatePDF}
+                        >
+                          Export PDF
+                      </button>
+                      <button 
+                       style={{ 
+                        marginTop: '490px',
+                        fontSize: '14px',
+                        border: '1px solid white',
+                        borderRadius: '10px',
+                        color: 'white',
+                        height: '50px', 
+                        width: '160px', 
+                        marginLeft: '100px',
+                        backgroundImage: 'radial-gradient(circle, #3dc8dc, #25c2e1, #05bbe5, #00b3e9, #12abeb)',
+                        cursor: 'pointer' 
+                        }} 
+                        onClick={generatePDF}
+                        >
+                          Import Excel
+                      </button>
+                      <button 
+                       style={{ 
+                        marginTop: '490px',
+                        fontSize: '14px',
+                        border: '1px solid white',
+                        borderRadius: '10px',
+                        color: 'white',
+                        height: '50px', 
+                        width: '160px', 
+                        marginLeft: '20px',
+                        backgroundImage: 'radial-gradient(circle, #3dc8dc, #25c2e1, #05bbe5, #00b3e9, #12abeb)',
+                        cursor: 'pointer' 
+                        }} 
+                        onClick={generatePDF}
+                        >
+                          Export Excel
+                      </button>
             </Box>
         </>
     )

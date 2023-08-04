@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../navbar";
+import axios from 'axios';
 import Typewritter from 'typewriter-effect';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
@@ -24,14 +25,52 @@ export const Pesawat = (props) => {
 
       const { RangePicker } = DatePicker;
       const [open, setOpen] = useState(false);
-      const [valueTelp, setValueTelp] = useState();
+      const [nama, setNama] = useState([]);
+      const [email, setEmail] = useState([]);
+      const [alamat, setAlamat] = useState([]);
+      const [nomorTelepon, setNomorTelepon] = useState([]);
+      const [tanggalLahir, setTanggalLahir] = useState([]);
+      const [tanggalBerangkat, setTanggalBerangkat] = useState([]);
+      const [tanggalPulang, setTanggalPulang] = useState([]);
+      const [tujuan, setTujuan] = useState([]);
+      const [ktp, setKtp] = useState([]);
+      const [valueTelp, setValueTelp] = useState([]);
       const [valueTujuan, setValueTujuan] = useState();
+
       const showOtherData = () => {
         setOpen(true);
       };
       const hideUserModal = () => {
         setOpen(false);
       };
+
+      const handleSubmit = async() => {
+
+        const detail = { 
+          nama, 
+          email, 
+          alamat, 
+          nomorTelepon, 
+          tanggalLahir,
+          tanggalBerangkat,
+          tanggalPulang,
+          tujuan,
+          ktp
+        };
+
+       await axios.post(`http://localhost:5000/detail-booking`, detail)
+        .then(res => {
+           localStorage.setItem('detail-booking', JSON.stringify(res.data))
+        })
+        .catch(err => {
+          console.log(err.message);
+        })
+      }
+
+      const onFinish = (e) => {
+        e.preventDefault();
+        handleSubmit();
+      }
 
       const { Option } = Select;
 
@@ -66,8 +105,9 @@ export const Pesawat = (props) => {
           form,
           open,
         });
+
         const onOk = () => {
-          form.submit();
+          form.submit()
         };
 
         const rangeConfig = {
@@ -238,9 +278,12 @@ export const Pesawat = (props) => {
             }, 500);
            })
 
+        
+
+
         return (
           <Modal title="Detail Reservasi" style={{ marginLeft: 550, marginTop: 100 }} open={open} onOk={onOk} onCancel={onCancel}>
-            <Form style={{ marginTop: 40 }} form={form} layout="vertical" name="userForm">
+            <Form style={{ marginTop: 40 }} form={form} layout="vertical" >
               <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid xs={6}>
                 <Form.Item
@@ -248,46 +291,50 @@ export const Pesawat = (props) => {
                   label="Email"
                   rules={[{ required: true, message: 'Please input your email!' }]}
                 >
-                  <Input type="email" style={{ width: 235 }} />
+                  <Input type="email" style={{ width: 235 }} value={email} onChange={(e) => setEmail(e.target.value)}  />
                 </Form.Item>
                 </Grid>
                 <Grid xs={2} style={{ marginLeft: 88 }}>
                 <Form.Item
                   name="tujuan"
+                  id="tujuan"
                   label="Tujuan"
                   rules={[{ required: true, message: 'Please input your objective!' }]}
                 >
                    <TreeSelect
                     style={{ width: '150px' }}
                     treeDataSimpleMode
-                    value={valueTujuan}
                     dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
                     treeData={treeData}
                     loadData={onLoadData}
+                    value={tujuan}
+                    onChange={(e) => setTujuan(e.target.value)}
                     placeholder="Please select"
-                    onChange={(e) => console.log(e)}
                   />
                 </Form.Item>
                 </Grid>
                 <Grid xs={6}>
                 <Form.Item 
                  name="range-picker" 
-                 label="Tanggal Berangkat & Pulang" 
-                 {...rangeConfig}
+                 id="tanggalBerangkat"
+                 label="Tanggal Berangkat & Pulang"
+                 onChange={e => setTanggalBerangkat(e.target.value)}
+                //  {...rangeConfig}
                  >
                   <RangePicker />
                 </Form.Item>
                 </Grid>
                 <Grid xs={3} style={{ marginLeft: 90 }}>
                 <Form.Item
-                  name="upload"
+                  name="ktp"
+                  id="ktp"
                   label="Upload KTP"
                   rules={[{ required: true, message: 'Please input your KTP!' }]}
-                  valuePropName="fileList"
-                  getValueFromEvent={normFile}
+                  // valuePropName="fileList"
+                  // getValueFromEvent={normFile}
                 >
                   <Upload name="logo" action="/upload.do" listType="picture">
-                    <Button icon={<UploadOutlined />}>Click to upload</Button>
+                    <Button value={ktp} onChange={e => setKtp(e.target.value)}  icon={<UploadOutlined />}>Click to upload</Button>
                   </Upload>
                 </Form.Item>
                 </Grid>
@@ -326,7 +373,7 @@ export const Pesawat = (props) => {
                         }}
                       />
                       </div>
-                      <Form.Provider
+                      {/* <Form.Provider
                         onFormFinish={(name, { values, forms }) => {
                           if (name === 'userForm') {
                             const { basicForm } = forms;
@@ -337,7 +384,7 @@ export const Pesawat = (props) => {
                             setOpen(false);
                           }
                         }}
-                     >
+                     > */}
                         <Form
                           name="wrap"
                           labelCol={{
@@ -354,48 +401,53 @@ export const Pesawat = (props) => {
                             marginTop: 30,
                             maxWidth: 600,
                           }}
+                          onFinish={onFinish}
                           >
                           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                             <Grid xs={6}>
                               <Form.Item
                                 label="Nama Penumpang"
                                 name="username"
+                                id="nama"
                                 rules={[{ required: true, message: 'Please input your name!' }]}
                               >
-                                <Input style={{ width: 200 }}/>
+                                <Input style={{ width: 200 }} value={nama} onChange={e => setNama(e.target.value)} />
                               </Form.Item>
                             </Grid>
                             <Grid xs={6}>
                               <Form.Item
                                 label="Tanggal Lahir"
                                 name="date"
+                                id="tanggalLahir"
                                 rules={[{ required: true, message: 'Please input your date of birth!' }]}
                               >
-                                <DatePicker style={{ width: 200 }}/>
+                                <DatePicker style={{ width: 200 }} value={tanggalLahir} onChange={e => setTanggalLahir(e.target.value)} />
                               </Form.Item>
                             </Grid>
                             <Grid xs={6}>
                               <Form.Item
                                 label="Alamat Penumpang"
                                 name="alamat"
+                                id="alamat"
                                 rules={[{ required: true, message: 'Please input your address!' }]}
                               >
-                                <Input type="text" style={{ width: 200 }}/>
+                                <Input type="text" style={{ width: 200 }} value={alamat} onChange={e => setAlamat(e.target.value)} />
                               </Form.Item>
                             </Grid>
                             <Grid xs={6}>
                             <Form.Item
                               name="phone"
                               label="Nomor Telepon"
+                              id="nomorTelepon"
                               rules={[{ required: true, message: 'Please input your phone number!' }]}
                             >
                               <PhoneInput
                                  international
                                  defaultCountry="ID"
                                  style={phoneInputStyle}
+                                 value={nomorTelepon}
+                                 onChange={e => setNomorTelepon(e.target.value)}
                                  placeholder="Masukkan nomor telpon"
-                                 value={valueTelp}
-                                 onChange={setValueTelp}
                               />
                             </Form.Item>
                             </Grid>
@@ -407,7 +459,7 @@ export const Pesawat = (props) => {
                             </Grid>
                           </Form>
                           <ModalForm open={open} onCancel={hideUserModal} />
-                          </Form.Provider>
+                          {/* </Form.Provider> */}
                       </Card>
                   </Grid>
            </Box>

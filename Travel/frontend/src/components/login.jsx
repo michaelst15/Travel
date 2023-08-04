@@ -27,26 +27,27 @@ export default function Login() {
   };
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     let login = {email, password};
   
 
-  axios.post('http://localhost:5000/login', login)
+  axios.post('http://127.0.0.1:8000/api/login', login)
   .then(res => {
-       Cookies.set('token', res.data.token)
-       if(!res.data.error){
-        localStorage.setItem('user', JSON.stringify(res.data))
-        message.success('Login berhasil')
-        setTimeout(() => {
-          navigation('/home');
-        }, 1000); 
-       }
-       else {
-        Cookies.remove('token')
-       }
+    console.log(res, "data")
+    if (res.data.user) { // Pastikan token ada dalam respons
+       //set token on localStorage
+       localStorage.setItem('token', res.data.token);
+
+       //redirect to dashboard
+       navigation('/home');
+    } else {
+      message.error('Login gagal');
+      Cookies.remove('token');
+    }
   })
   .catch(error => {
     console.log(error.message);
-  })
+  });
 }
 
   return (
